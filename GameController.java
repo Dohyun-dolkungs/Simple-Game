@@ -17,12 +17,10 @@ public class GameController{
 		}
 
 		// Create a new game
-		// [!] Uncomment this
-		// Game game = new Game(3);
+		Game game = new Game(3);
 
 		// execute game logic
-		// [!] uncomment this
-		// runGame(game);
+		runGame(game);
 		
 		// close the input stream
 		keyboard.close();
