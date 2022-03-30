@@ -32,6 +32,12 @@ public class GameController{
 
 		// Call start
 		newGame.startGame();
+
+		while(newGame.isLocationValid()) {
+			newGame.enterLocation();
+			newGame.incrementLocation();
+		}
+		
 		// The End
 		newGame.endGame();
 	}

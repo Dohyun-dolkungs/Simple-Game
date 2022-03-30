@@ -1,6 +1,6 @@
 public class Game {
     // instance variable
-    private int currentLocation;
+    private int currentLocation = 0;
     private Location[] map;
 
     // constructor
@@ -25,16 +25,15 @@ public class Game {
     }
 
     public void enterLocation() {
-        System.out.println(map[currentLocation].toString());
+        System.out.println("Entering the " + map[currentLocation].toString());
     }
 
     public boolean isLocationValid() {
         if(currentLocation < map.length){
             return true;
         }
-        else{
-            return false;
-        }
+        
+        return false;
     }
 
     // toString

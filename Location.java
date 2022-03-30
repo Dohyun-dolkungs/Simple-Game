@@ -6,7 +6,7 @@ public class Location {
     // constructor
     public Location(int newDifficulty) {
         difficulty = newDifficulty;
-        name = GameData.getRandomName();
+        name = GameData.getRandomLocationName();
     }
 
     // toString 
