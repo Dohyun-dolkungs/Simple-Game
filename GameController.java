@@ -31,8 +31,9 @@ public class GameController{
 	private static void runGame(Game newGame){
 
 		// Call start
-
+		newGame.startGame();
 		// The End
+		newGame.endGame();
 	}
 	
 	// Asks the user to enter a number. No error checking is provided. 
