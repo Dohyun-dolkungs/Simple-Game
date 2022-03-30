@@ -1,6 +1,6 @@
 public class Game {
     // instance variable
-    private int currentLocation = 0;
+    private int currentLocation;
     private Location[] map;
 
     // constructor
@@ -9,6 +9,8 @@ public class Game {
         for(int i=0; i < mapSize; i++){
             map[i] = new Location(i);
         }
+
+        currentLocation = 0;
     }
     
     // method
@@ -17,7 +19,7 @@ public class Game {
     }
 
     public void endGame() {
-        System.out.println("The End");
+        System.out.println("--- The End ---");
     }
 
     public void incrementLocation() {
@@ -25,7 +27,16 @@ public class Game {
     }
 
     public void enterLocation() {
-        System.out.println("Entering the " + map[currentLocation].toString());
+        System.out.println("-------------------------");
+        System.out.println("You see the " + map[currentLocation].toString() + " up ahead");
+        
+        int input = GameController.waitForInput("Do you enter? (Enter 1 for yes, 2 for no)", 2);
+       
+        if(input ==1) {
+            System.out.println("You enter the " + map[currentLocation].toString());
+        }else if(input ==2) {
+            System.out.println("You pass by the " + map[currentLocation].toString());
+        }
     }
 
     public boolean isLocationValid() {

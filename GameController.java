@@ -53,8 +53,15 @@ public class GameController{
 
 		// Wait for input here
 		// Should loop until we have a 1 or 2 entered.
-		// [ ] Complete this method
-		// [!] A do while loop might be useful here since we need to listen for input at least once
+		
+		do{
+			System.out.println("Please enter a number between 1-" + maxInput);
+			num = keyboard.nextInt();
+
+			if(num > 0 && num <= maxInput) {
+				valid = true;
+			}
+		}while(!valid);
 
 		return num;
 	}
