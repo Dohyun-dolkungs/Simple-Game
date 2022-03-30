@@ -20,6 +20,23 @@ public class Game {
         System.out.println("The End");
     }
 
+    public void incrementLocation() {
+        currentLocation++;
+    }
+
+    public void enterLocation() {
+        System.out.println(map[currentLocation].toString());
+    }
+
+    public boolean isLocationValid() {
+        if(currentLocation < map.length){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+
     // toString
     public String toString() {
         if(map.length != 0){
