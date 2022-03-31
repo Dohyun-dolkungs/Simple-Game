@@ -2,6 +2,7 @@ public class Game {
     // instance variable
     private int currentLocation;
     private Location[] map;
+    private Player currentPlayer;
 
     // constructor
     public Game(int mapSize){
@@ -11,14 +12,16 @@ public class Game {
         }
 
         currentLocation = 0;
+        currentPlayer = new Player();
     }
     
     // method
     public void startGame() {
-        System.out.println("Starting new game with " + map.length + " Locations");
+        System.out.println("Our hero " + currentPlayer.toString() + " begins a campain that contains " + map.length + " Locations");
     }
 
     public void endGame() {
+        System.out.println("At the end of the campain " + currentPlayer.playerStatus());
         System.out.println("--- The End ---");
     }
 
@@ -31,11 +34,13 @@ public class Game {
         System.out.println("You see the " + map[currentLocation].toString() + " up ahead");
         
         int input = GameController.waitForInput("Do you enter? (Enter 1 for yes, 2 for no)", 2);
-       
+        String playerName = currentPlayer.toString();
         if(input ==1) {
-            System.out.println("You enter the " + map[currentLocation].toString());
+            currentPlayer.loglocation(true);
+            System.out.println(playerName + " enter the " + map[currentLocation].toString());
         }else if(input ==2) {
-            System.out.println("You pass by the " + map[currentLocation].toString());
+            currentPlayer.loglocation(false);
+            System.out.println(playerName + " pass by the " + map[currentLocation].toString());
         }
     }
 
