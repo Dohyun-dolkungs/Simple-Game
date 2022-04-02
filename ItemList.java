@@ -12,7 +12,8 @@ public class ItemList {
 
     // method 
     public void addItem(Item newItem) {
-        items[currentIndex++] = newItem;
+        items[currentIndex] = newItem;
+        currentIndex ++;
     }
 
     public int itemCount() {
@@ -22,17 +23,15 @@ public class ItemList {
     public String toString() {
         String value = "[";
 
-        if(currentIndex > 1){
-            for(int i=0; i < items.length; i++){
-                value += items[i].toString();
-                
-                if(i != items.length-1){
-                    value += ",";
-                }
-            }
-        }else{
-            value = "There is no Item in the list";
+        if(currentIndex == 0) {
+            return "[EMPTY]";
+        }    
+
+        for(int i = 0; i < currentIndex -1; i++) {
+            value += items[i].toString() + ", ";
         }
+        
+        value += items[currentIndex-1].toString() + "]";
         return value;
     }
 }

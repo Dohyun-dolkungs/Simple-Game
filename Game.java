@@ -37,9 +37,12 @@ public class Game {
         String playerName = currentPlayer.toString();
 
         if(input ==1) {
-            currentPlayer.loglocation(true);
             System.out.println(playerName + " enter the " + map[currentLocation].toString());
-            System.out.println(playerName + " collected a new Item. The " + map[currentLocation].removeItem());
+            currentPlayer.loglocation(true);
+
+            Item newItem = map[currentLocation].removeItem();
+            currentPlayer.addItem(newItem);
+            System.out.println(playerName + " collected a new Item. The " + newItem.toString());
         }else if(input ==2) {
             currentPlayer.loglocation(false);
             System.out.println(playerName + " pass by the " + map[currentLocation].toString());
