@@ -4,6 +4,7 @@ public class Player {
     private int hitPoints;
     private int locationsReached;
     private int locationsEntered;
+    private ItemList inventory;
 
     // constructor
     public Player() {
@@ -11,6 +12,7 @@ public class Player {
         hitPoints = 10;
         locationsReached = 0;
         locationsEntered = 0;
+        inventory = new ItemList();
     }
 
     public Player(String newName, int newHitPoints) {
@@ -36,6 +38,19 @@ public class Player {
     }
 
     public String playerStatus() {
-        return "The player " + name + " has " + hitPoints + " Hit Points and entered " + locationsEntered + " of " + locationsReached + " locations";
+        return "The player " + name + " has " + hitPoints + " Hit Points and entered " + locationsEntered + " of " + locationsReached + " locations" 
+                +  "\n" + "They also colleted the following loot : [" + inventory.toString() + "]";
+    }
+
+    public String getInventory() {
+        return inventory.toString();
+    }
+
+    public void addItem(Item newItem) {
+        inventory.addItem(newItem);
+    }
+
+    public int itemCount() {
+        return inventory.itemCount();
     }
 }

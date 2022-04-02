@@ -35,9 +35,11 @@ public class Game {
         
         int input = GameController.waitForInput("Do you enter? (Enter 1 for yes, 2 for no)", 2);
         String playerName = currentPlayer.toString();
+
         if(input ==1) {
             currentPlayer.loglocation(true);
             System.out.println(playerName + " enter the " + map[currentLocation].toString());
+            System.out.println(playerName + " collected a new Item. The " + map[currentLocation].removeItem());
         }else if(input ==2) {
             currentPlayer.loglocation(false);
             System.out.println(playerName + " pass by the " + map[currentLocation].toString());
