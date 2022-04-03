@@ -17,7 +17,7 @@ public class GameController{
 		}
 
 		// Create a new game
-		Game game = new Game(3);
+		Game game = new Game(5);
 
 		// execute game logic
 		runGame(game);
@@ -33,7 +33,7 @@ public class GameController{
 		// Call start
 		newGame.startGame();
 
-		while(newGame.isLocationValid()) {
+		while(newGame.isLocationValid() && newGame.isPlayerAlive()) {
 			newGame.enterLocation();
 			newGame.incrementLocation();
 		}

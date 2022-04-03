@@ -53,4 +53,8 @@ public class Player {
     public int itemCount() {
         return inventory.itemCount();
     }
+
+    public void takeDamage(int damage) {
+        hitPoints -= damage;
+    }
 }

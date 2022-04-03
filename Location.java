@@ -3,12 +3,14 @@ public class Location {
     private String name;
     private int difficulty;
     private Item storedItem;
+    private Creature guardian;
 
     // constructor
     public Location(int newDifficulty) {
         difficulty = newDifficulty;
         name = GameData.getRandomLocationName();
         storedItem = new Item();
+        guardian = new Creature(difficulty);
     }
 
     // method
@@ -24,5 +26,9 @@ public class Location {
         Item temp = storedItem;
         storedItem = null;
         return temp;
+    }
+
+    public Creature getGuardian() {
+        return guardian;
     }
 }

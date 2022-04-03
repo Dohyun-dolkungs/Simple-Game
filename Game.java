@@ -31,21 +31,34 @@ public class Game {
 
     public void enterLocation() {
         System.out.println("-------------------------");
-        System.out.println("You see the " + map[currentLocation].toString() + " up ahead");
+        System.out.println("You see the " + map[currentLocation].toString() + " up ahead. A " + map[currentLocation].getGuardian().toString() + " can be seen inside.");
         
         int input = GameController.waitForInput("Do you enter? (Enter 1 for yes, 2 for no)", 2);
+        
         String playerName = currentPlayer.toString();
+        String creatureName = map[currentLocation].getGuardian().toString();
+        String locationName = map[currentLocation].toString();
 
         if(input ==1) {
-            System.out.println(playerName + " enter the " + map[currentLocation].toString());
+            System.out.println(playerName + " enter the " + locationName);
             currentPlayer.loglocation(true);
-
-            Item newItem = map[currentLocation].removeItem();
-            currentPlayer.addItem(newItem);
-            System.out.println(playerName + " collected a new Item. The " + newItem.toString());
+        
+            if(battleCreature(map[currentLocation].getGuardian())) {
+                System.out.println(playerName + " battles the " + creatureName + " and wins!");
+                Item newItem = map[currentLocation].removeItem();
+                currentPlayer.addItem(newItem);
+                System.out.println(playerName + " collected a new Item. The " + newItem.toString());
+            }else{
+                System.out.println(playerName + " battles the " + creatureName + " and loses!");
+                System.out.println(playerName + " takes " + map[currentLocation].getGuardian().getDifficulty() + " damage and has " + currentPlayer.getHitPoints());
+                if(currentPlayer.getHitPoints() < 1){
+                    System.out.println(playerName + " has been slained by " + creatureName + "\n\nGameOver\n");
+                }
+            }
+            
         }else if(input ==2) {
             currentPlayer.loglocation(false);
-            System.out.println(playerName + " pass by the " + map[currentLocation].toString());
+            System.out.println(playerName + " pass by the " + locationName + " and avoided the " +creatureName);
         }
     }
 
@@ -71,6 +84,24 @@ public class Game {
         else{
             return "mapLength is less than 1";
         }
+    }
+
+    public boolean isPlayerAlive() {
+        if(currentPlayer.getHitPoints() > 0) {
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+    public boolean battleCreature(Creature newCreature) {
+        if((GameData.randomRoll(0, 3) + currentPlayer.itemCount()) > newCreature.getDifficulty()) {
+            return true;
+        }else{
+            currentPlayer.takeDamage(newCreature.getDifficulty());
+            return false;
+        }
+        
     }
 }
 
